@@ -1,5 +1,5 @@
 # coding: utf-8
-$: << File.dirname(__FILE__) + '/../lib'
+$: << File.expand_path(File.join(File.dirname(__FILE__), *%w[.. lib]))
 
 require 'rubygems'
 require 'spec'
