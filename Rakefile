@@ -13,9 +13,9 @@ rescue LoadError
   end
 end
 
-NAME = "grimen-delayed_job_mailer"
+NAME = "delayed_mailer"
 SUMMARY = %Q{Send emails asynchronously using delayed_job.}
-HOMEPAGE = "http://github.com/grimen/#{NAME}"
+HOMEPAGE = "http://github.com/danielvlopes/#{NAME}"
 AUTHOR = "Anderson Dias"
 EMAIL = "andersondaraujo@gmail.com"
 SUPPORT_FILES = %w(README)
