@@ -1,0 +1,44 @@
+= delayed_mailer
+
+This gem hooks in Rails ActionMailer::Base and change the behavior of deliver_* methods to allways delegate the sending taks
+to DelayedJob. With this in mind all your emails will be sent asynchronous instead of sycnhronous.
+
+== Download
+
+Gem:
+  gem install delayed_mailer
+
+== Installation
+
+Load the gem in the appropriate environments using Rails' 2.1+ gem support.  For example, I'm loading this in
+config/environments/production.rb and config/environments/staging.rb:
+
+  config.gem 'delayed_mailer'
+
+== How it works
+
+When the gem is loaded it change the ActionMailer::Base method_missing to use send_later method of DelayedJob instead of
+normal deliver_*. If you want  synchronous send you just call deliver_*!. The deliver with bang (!) will
+send the message using default ActionMailer method.
+
+== Version Compatibility
+
+  specs.should pass if RUBY_VERSION =~ /^1.(8.6|8.7|9.1)$/ && Rails.version =~ /^(1.2.6|2.\d.\d)$/
+
+== Maintainers
+
+* Anderson Dias - http://github.com/andersondias
+* Daniel Lopes - http://github.com/danielvlopes
+
+== Contributors
+
+* Overbryd - http://github.com/Overbryd
+* Grimen - http://github.com/grimen/
+
+== Copyright
+
+Copyright (c) 2009 Anderson Dias, released under the MIT license
+
+Email: andersondaraujo[at]gmail.com
+Twitter: extendsmymind
+Blog: http://extendsmymind.wordpress.com
