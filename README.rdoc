@@ -25,15 +25,15 @@ send the message using default ActionMailer method.
 
   specs.should pass if RUBY_VERSION =~ /^1.(8.6|8.7|9.1)$/ && Rails.version =~ /^(1.2.6|2.\d.\d)$/
 
-== Maintainers
+== Author
 
 * Anderson Dias - http://github.com/andersondias
-* Daniel Lopes - http://github.com/danielvlopes
 
 == Contributors
 
+* Daniel Lopes - http://github.com/danielvlopes
 * Overbryd - http://github.com/Overbryd
-* Grimen - http://github.com/grimen/
+* Grimen - http://github.com/grimen
 
 == Copyright
 
