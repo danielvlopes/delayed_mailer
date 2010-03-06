@@ -9,12 +9,18 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Anderson Ara\303\272jo"]
-  s.date = %q{2010-03-05}
+  s.date = %q{2010-03-06}
   s.description = %q{Change the behavior of ActionMailer::Base in Rails to allways use delayed_job's send_later method.}
   s.email = %q{andersondaraujo@gmail.com}
+  s.extra_rdoc_files = [
+    "LICENSE",
+     "README"
+  ]
   s.files = [
     ".document",
      ".gitignore",
+     "LICENSE",
+     "README",
      "Rakefile",
      "VERSION",
      "delayed_mailer.gemspec",
