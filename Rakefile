@@ -8,7 +8,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "delayed_mailer"
     gem.summary = %Q{Send emails asynchronously using delayed_job.}
-    gem.description = %Q{Send emails asynchronously using delayed_job.}
+    gem.description = %Q{Change the behavior of ActionMailer::Base in Rails to allways use delayed_job's send_later method.}
     gem.email = "andersondaraujo@gmail.com"
     gem.homepage = "http://github.com/danielvlopes/delayed_mailer"
     gem.authors = ["Anderson Araújo"]
