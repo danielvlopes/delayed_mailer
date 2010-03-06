@@ -17,7 +17,6 @@ end
 
 describe AsynchTestMailer do
   before do
-    # We need a default environment...
     Object.const_set 'RAILS_ENV', 'test' unless defined?(::RAILS_ENV)
   end
 
