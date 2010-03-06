@@ -1,78 +1,45 @@
 # coding: utf-8
+
+require 'rubygems'
 require 'rake'
-require 'rake/rdoctask'
 
 begin
-  require 'spec/rake/spectask'
-rescue LoadError
-  begin
-    gem 'rspec-rails', '>= 1.0.0'
-    require 'spec/rake/spectask'
-  rescue LoadError
-    puts "RSpec - or one of it's dependencies - is not available. Install it with: sudo gem install rspec-rails"
-  end
-end
-
-NAME = "delayed_mailer"
-SUMMARY = %Q{Send emails asynchronously using delayed_job.}
-HOMEPAGE = "http://github.com/danielvlopes/#{NAME}"
-AUTHOR = "Anderson Dias"
-EMAIL = "andersondaraujo@gmail.com"
-SUPPORT_FILES = %w(README)
-
-begin
-  gem 'jeweler', '>= 1.2.1'
   require 'jeweler'
-  
-  Jeweler::Tasks.new do |gemspec|
-    gemspec.name = NAME
-    gemspec.summary = SUMMARY
-    gemspec.description = SUMMARY
-    gemspec.homepage = HOMEPAGE
-    gemspec.author = AUTHOR
-    gemspec.email = EMAIL
-    
-    gemspec.autorequire = NAME
-    gemspec.require_paths = %w{lib}
-    gemspec.files = SUPPORT_FILES << %w(MIT-LICENSE Rakefile) << Dir.glob(File.join(*%w[{lib,spec} ** *]).to_s)
-    gemspec.extra_rdoc_files = SUPPORT_FILES
-    
-    gemspec.add_dependency 'actionmailer', '>= 1.2.3'
-    gemspec.add_dependency 'activesupport', '>= 1.2.3'
-    
-    gemspec.add_development_dependency 'rspec-rails', '>= 1.2.6'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "delayed_mailer"
+    gem.summary = %Q{Send emails asynchronously using delayed_job.}
+    gem.description = %Q{Send emails asynchronously using delayed_job.}
+    gem.email = "andersondaraujo@gmail.com"
+    gem.homepage = "http://github.com/danielvlopes/delayed_mailer"
+    gem.authors = ["Anderson Araújo"]
+    gem.add_development_dependency "rspec", ">= 1.3.0"
   end
-  
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install jeweler -s http://gemcutter.org"
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-desc %Q{Default: Run specs for "#{NAME}".}
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:spec) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.spec_files = FileList['spec/**/*_spec.rb']
+end
+
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+end
+
+task :spec => :check_dependencies
 task :default => :spec
 
-desc %Q{Generate documentation for "#{NAME}".}
-Rake::RDocTask.new(:rdoc) do |rdoc|
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = NAME
-  rdoc.options << '--line-numbers' << '--inline-source' << '--charset=UTF-8'
-  rdoc.rdoc_files.include(SUPPORT_FILES)
-  rdoc.rdoc_files.include(File.join(*%w[lib ** *.rb]))
-end
-
-SPEC_FILES = Rake::FileList[File.join(*%w[spec ** *_spec.rb])]
-
-if defined?(Spec)
-  desc %Q{Run specs for "#{NAME}".}
-  Spec::Rake::SpecTask.new do |t|
-    t.spec_files = SPEC_FILES
-    t.spec_opts = ['-c']
-  end
-
-  desc %Q{Generate code coverage for "#{NAME}".}
-  Spec::Rake::SpecTask.new(:coverage) do |t|
-    t.spec_files = SPEC_FILES
-    t.rcov = true
-    t.rcov_opts = ['--exclude', 'spec,/var/lib/gems']
-  end
+  rdoc.title = "delayed_mailer #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
