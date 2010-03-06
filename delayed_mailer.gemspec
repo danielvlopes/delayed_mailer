@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".gitignore",
      "Rakefile",
-     "VERSION.yml",
+     "VERSION",
      "delayed_mailer.gemspec",
      "lib/delayed/mailer.rb",
      "lib/delayed_mailer.rb",
