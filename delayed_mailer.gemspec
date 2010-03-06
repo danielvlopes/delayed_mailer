@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{delayed_mailer}
-  s.version = "0.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Anderson Ara\303\272jo"]
@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{Send emails asynchronously using delayed_job.}
   s.email = %q{andersondaraujo@gmail.com}
   s.files = [
-    ".gitignore",
+    ".document",
+     ".gitignore",
      "Rakefile",
      "VERSION",
      "delayed_mailer.gemspec",
