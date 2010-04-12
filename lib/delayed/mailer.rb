@@ -13,7 +13,7 @@ module Delayed
       
           case method_name
             when /^deliver_([_a-z]\w*)$/
-              send_later(method_name, *params, &block)
+              send_later("#{method_name}!", *params, &block)
             when /^deliver_([_a-z]\w*)!$/
               original_method_missing(method_name.gsub(/!$/,""), *params, &block)
             else
